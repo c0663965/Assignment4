@@ -23,14 +23,16 @@ function refreshBalance() {
        }
     });
 }
+
 function withdraw() {
     $.ajax({
        url: 'account',
        method: 'POST',
-       data: { 'withdraw' : $('#withdraw').val()},
+       data: {'withdraw' : $('#withdraw').val()},
        success: refreshBalance
     });
 }
+
 function deposit() {
     $.ajax({
        url: 'account',

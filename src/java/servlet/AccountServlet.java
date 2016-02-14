@@ -16,8 +16,14 @@
 
 package servlet;
 
+import model.Account;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Provides an Account Balance and Basic Withdrawal/Deposit Operations
@@ -25,4 +31,40 @@ import javax.servlet.http.HttpServlet;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
     
+    private Account myAccount = new Account(1000);
+   
+    @Override
+    protected void doPost(HttpServletRequest req ,HttpServletResponse res)
+    { 
+        String withdraw=req.getParameter("withdraw");
+        String deposit=req.getParameter("deposit");
+        String close=req.getParameter("close");
+
+        if(withdraw!=null)
+            myAccount.withdraw(Double.parseDouble(withdraw));
+
+        if(deposit!=null)
+            myAccount.deposit(Double.parseDouble(deposit));
+
+        if(close!=null && Boolean.parseBoolean(req.getParameter("close")))
+            myAccount.closeAccount();
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException
+    {
+        res.setHeader("Cache-Control","private, no-store, no-cache, must-revalidate");
+        res.setHeader("Pragma","no-cache");
+        res.setDateHeader("Expires",0);
+        
+        try (PrintWriter out = res.getWriter()) 
+        {
+            out.println(myAccount.getBalance());
+            //res.getWriter().write(Double.toString(myAccount.getBalance()));
+            out.close();
+
+        } catch (IOException ex) {
+            System.err.println("Something Went Wrong: " + ex.getMessage());
+        }
+    }
 }
