@@ -16,8 +16,12 @@
 
 package model;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  * Tests for the Account class
@@ -25,6 +29,22 @@ import static org.junit.Assert.*;
 public class AccountTest {
     
     public AccountTest() {
+    }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
     }
 
     @Test
@@ -48,10 +68,80 @@ public class AccountTest {
     @Test
     public void testGetBalanceIs100AfterDeposit500ThenWithdraw400() {
         
+        Account instance = new Account();
+        instance.deposit(500);
+        instance.withdraw(400);
+
+        double expResult = 100.0;
+        double result = instance.getBalance();
+        assertEquals(expResult, result, 0.0);
+        
     }
     
     @Test
     public void testGetBalanceIsZeroAfterDeposit500ThenClose() {
         
+        Account instance = new Account();
+        instance.deposit(500);
+        instance.closeAccount();
+
+        double expResult = 0.0;
+        double result = instance.getBalance();
+        assertEquals(expResult, result, 0.0);
+    }
+
+    /**
+     * Test of getBalance method, of class Account.
+     */
+    @Test
+    public void testGetBalance() {
+        System.out.println("getBalance");
+        Account instance = new Account();
+        double expResult = 0.0;
+        double result = instance.getBalance();
+        assertEquals(expResult, result, 0.0);
+    }
+
+    /**
+     * Test of setBalance method, of class Account.
+     */
+    @Test
+    public void testSetBalance() {
+        System.out.println("setBalance");
+        double balance = 0.0;
+        Account instance = new Account();
+        instance.setBalance(balance);
+    }
+
+    /**
+     * Test of deposit method, of class Account.
+     */
+    @Test
+    public void testDeposit() {
+        System.out.println("deposit");
+        double cash = 0.0;
+        Account instance = new Account();
+        instance.deposit(cash);
+    }
+
+    /**
+     * Test of withdraw method, of class Account.
+     */
+    @Test
+    public void testWithdraw() {
+        System.out.println("withdraw");
+        double cash = 0.0;
+        Account instance = new Account();
+        instance.withdraw(cash);
+    }
+
+    /**
+     * Test of closeAccount method, of class Account.
+     */
+    @Test
+    public void testCloseAccount() {
+        System.out.println("closeAccount");
+        Account instance = new Account();
+        instance.closeAccount();
     }
 }
