@@ -28,6 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Provides an Account Balance and Basic Withdrawal/Deposit Operations
  */
+
+/* Written by Kihoon, Lee (c0663965) */
+
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
     
@@ -51,7 +54,7 @@ public class AccountServlet extends HttpServlet {
     }
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
     {
         res.setHeader("Cache-Control","private, no-store, no-cache, must-revalidate");
         res.setHeader("Pragma","no-cache");
@@ -60,7 +63,6 @@ public class AccountServlet extends HttpServlet {
         try (PrintWriter out = res.getWriter()) 
         {
             out.println(myAccount.getBalance());
-            //res.getWriter().write(Double.toString(myAccount.getBalance()));
             out.close();
 
         } catch (IOException ex) {

@@ -1,10 +1,11 @@
 package model;
-
 import javax.faces.bean.ApplicationScoped;
 
 
-@ApplicationScoped
 
+/* Written by Kihoon, Lee (c0663965) */
+
+@ApplicationScoped
 public class Account {
     
     private double balance;
